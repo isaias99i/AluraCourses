@@ -8,6 +8,10 @@ class FormScreen extends StatefulWidget {
 }
 
 class _FormScreenState extends State<FormScreen> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController difficultyController = TextEditingController();
+  TextEditingController imageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,14 +26,78 @@ class _FormScreenState extends State<FormScreen> {
               borderRadius: BorderRadius.circular(10),
               border: Border.all(width: 3)),
           child: Column(children: [
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Nome',
-                fillColor: Colors.white70,
-                filled: true,
+            //Name
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: nameController,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Nome',
+                  fillColor: Colors.white70,
+                  filled: true,
+                ),
               ),
             ),
+
+            //Difficulty
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: difficultyController,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Dificuldade',
+                  fillColor: Colors.white70,
+                  filled: true,
+                ),
+              ),
+            ),
+
+            //Image
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                onChanged: (text) {
+                  setState(() {
+                    
+                  });
+                },
+                controller: imageController,
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Imagem',
+                  fillColor: Colors.white70,
+                  filled: true,
+                ),
+              ),
+            ),
+
+            Container(
+              height: 100,
+              width: 72,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(width: 2, color: Colors.blue),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(imageController.text,fit: BoxFit.cover,),
+              ),
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                print(nameController.text);
+                print(int.parse(difficultyController.text));
+                print(imageController.text);
+              },
+              child: Text('Adiconar'),
+            )
           ]),
         ),
       ),
