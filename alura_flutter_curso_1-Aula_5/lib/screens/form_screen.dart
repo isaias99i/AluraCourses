@@ -53,7 +53,7 @@ class _FormScreenState extends State<FormScreen> {
                           ),
                           keyboardType: TextInputType.name),
                     ),
-    
+
                     //Difficulty
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -77,7 +77,7 @@ class _FormScreenState extends State<FormScreen> {
                         keyboardType: TextInputType.number,
                       ),
                     ),
-    
+
                     //Image
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -101,7 +101,7 @@ class _FormScreenState extends State<FormScreen> {
                           ),
                           keyboardType: TextInputType.url),
                     ),
-    
+
                     Container(
                       height: 100,
                       width: 72,
@@ -123,14 +123,18 @@ class _FormScreenState extends State<FormScreen> {
                         ),
                       ),
                     ),
-    
+
                     ElevatedButton(
                       onPressed: () {
-                        if(_formKey.currentState!.validate()){
-
-                        print(nameController.text);
-                        print(int.parse(difficultyController.text));
-                        print(imageController.text);
+                        if (_formKey.currentState!.validate()) {
+                          print(nameController.text);
+                          print(int.parse(difficultyController.text));
+                          print(imageController.text);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Salvando nova tarefa'),
+                            ),
+                          );
                         }
                       },
                       child: Text('Adiconar'),
