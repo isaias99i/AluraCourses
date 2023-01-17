@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'questions/time_questions.dart';
@@ -8,6 +7,14 @@ void main() async {
   String kakoBot = 'HelloBOT:\n';
   var a = true;
   String usuario = '';
+
+  var myStream = BotClock().kakoBotStream(1, 10);
+  var subscriber = myStream.listen((event) {
+    print('          Kakobot is activate for $event seconds');
+  }).onDone(() {
+    print('KakoBot is finishing its work, ask the last question');
+    a = false;
+  });
 
   print('-- Iniciando o HelloBOT, aguarde..--');
   await BotClock().clock(2);
@@ -27,7 +34,6 @@ void main() async {
       // verificar antes, assim não fazemos toda a função sem precisar.
       await BotClock().clock(2);
       TimeQuestions(usuario).timeQuestion();
-
     } else if (false) {
       //Basta adicionar novas perguntas aqui!
     } else {
