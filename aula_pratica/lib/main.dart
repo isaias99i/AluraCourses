@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'tools/home.dart';
-import 'tools/iconVisibility.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-  final bool visible = true;
+  MyApp({Key? key}) : super(key: key);
+
+  bool visible = true;
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -28,45 +27,56 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Flutter: Primeiros Passos'),
-              HideInfos(visible: widget.visible),
+            children: const [
+               Text('Flutter: Primeiros Passos'),
             ],
           ),
         ),
-        body: ListView(
-          children: const [
-            PrimeirosPassos(
-                cor1: Colors.black,
-                cor2: Colors.red,
-                cor3: Colors.yellow,
-                largura: 100),
-            PrimeirosPassos(
-                cor1: Colors.black,
-                cor2: Colors.red,
-                cor3: Colors.lightBlueAccent,
-                largura: 100),
-            PrimeirosPassos(
-                cor1: Colors.red,
-                cor2: Colors.purple,
-                cor3: Colors.pinkAccent,
-                largura: 100),
-            PrimeirosPassos(
-                cor1: Colors.black,
-                cor2: Colors.red,
-                cor3: Colors.yellow,
-                largura: 100),
-            PrimeirosPassos(
-                cor1: Colors.black,
-                cor2: Colors.red,
-                cor3: Colors.lightBlueAccent,
-                largura: 100),
-            PrimeirosPassos(
-                cor1: Colors.red,
-                cor2: Colors.purple,
-                cor3: Colors.pinkAccent,
-                largura: 100),
-          ],
+        body: AnimatedOpacity(
+          opacity: widget.visible ? 1 : 0,
+          duration: const  Duration(milliseconds: 1000),
+          child: ListView(
+            children: const [
+              PrimeirosPassos(
+                  cor1: Colors.black,
+                  cor2: Colors.red,
+                  cor3: Colors.yellow,
+                  largura: 100),
+              PrimeirosPassos(
+                  cor1: Colors.black,
+                  cor2: Colors.red,
+                  cor3: Colors.lightBlueAccent,
+                  largura: 100),
+              PrimeirosPassos(
+                  cor1: Colors.red,
+                  cor2: Colors.purple,
+                  cor3: Colors.pinkAccent,
+                  largura: 100),
+              PrimeirosPassos(
+                  cor1: Colors.black,
+                  cor2: Colors.red,
+                  cor3: Colors.yellow,
+                  largura: 100),
+              PrimeirosPassos(
+                  cor1: Colors.black,
+                  cor2: Colors.red,
+                  cor3: Colors.lightBlueAccent,
+                  largura: 100),
+              PrimeirosPassos(
+                  cor1: Colors.red,
+                  cor2: Colors.purple,
+                  cor3: Colors.pinkAccent,
+                  largura: 100),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              widget.visible = !widget.visible;
+            });
+
+          },
         ),
       ),
     );
